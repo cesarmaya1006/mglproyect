@@ -3,9 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Models\Config\Mensaje;
+use App\Models\Config\Notificacion;
+use App\Models\Empresa\Empleado;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Session;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -65,5 +70,45 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    //==================================================================================
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'id');
+    }
+    //==================================================================================
+    public function notificaciones()
+    {
+        return $this->hasMany(Notificacion::class, 'usuario_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+    public function mensajes_remitente()
+    {
+        return $this->hasMany(Mensaje::class, 'remitente_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+    public function mensajes_destinatario()
+    {
+        return $this->hasMany(Mensaje::class, 'destinatario_id', 'id');
+    }
+    //----------------------------------------------------------------------------------
+    //==================================================================================
+    public function setSession()
+    {
+        $roles = $this->getRoleNames();
+        $roles1 = substr($roles, 0, -1);
+        $roles1 = substr($roles1, 1);
+        $roles1 = str_replace('"', '', $roles1);
+        //$roles = explode(',',$roles);
+        $roles1 = $this->roles1;
+        $nombres_completos = $this->name;
+        Session::put([
+            'id_usuario' => $this->id,
+            'nombres_completos' => $nombres_completos,
+            'rol_principal' => $roles1[0]['name'],
+            'rol_principal_id' => $roles1[0]['id'],
+            'roles' => $roles,
+            //'cant_notificaciones' => Notificacion::where('usuario_id',$this->id)->count(),
+        ]);
     }
 }
