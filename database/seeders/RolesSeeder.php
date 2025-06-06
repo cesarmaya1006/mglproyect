@@ -25,5 +25,31 @@ class RolesSeeder extends Seeder
         $rol4 = Role::create(['name' => 'Empleado']);
 
         Permission::create(['name' => 'dashboard'])->syncRoles([$rol1, $rol2, $rol3, $rol4]);
+        Permission::create(['name' => 'permisos_menus_empresas.index'])->syncRoles([$rol1, $rol2]);
+
+
+        Permission::create(['name' => 'areas.index'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'areas.create'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'areas.edit'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'areas.store'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'areas.update'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'areas.destroy'])->syncRoles([$rol1, $rol2,$rol3]);
+
+
+        Permission::create(['name' => 'empresa.index'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'empresa.create'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'empresa.edit'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'empresa.store'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'empresa.update'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'empresa.destroy'])->syncRoles([$rol1, $rol2,$rol3]);
+
+
+
+
+
+
+
+
+
     }
 }

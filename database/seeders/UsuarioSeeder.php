@@ -32,20 +32,35 @@ class UsuarioSeeder extends Seeder
         $usuario1 = User::create([
             'name' => 'Cesar Maya',
             'email' => 'cesarmaya1006@gmail.com',
-            'password' => bcrypt('123456789')
-        ])->syncRoles('Super Administrador');
+            'password' => bcrypt('123456789'),
+            'licencia' => 1
+        ])->syncRoles('Super Administrador','Administrador','Administrador Empresa','Empleado');
         // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         $usuario2 = User::create([
             'name' => 'Daniel Lopez',
             'email' => 'dlopez@mgl.com',
-            'password' => bcrypt('123456789')
-        ])->syncRoles(['Administrador']);
+            'password' => bcrypt('123456789'),
+            'licencia' => 1
+        ])->syncRoles(['Administrador','Administrador Empresa','Empleado']);
         // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         $usuario2 = User::create([
             'name' => 'Alejandro Gomez',
             'email' => 'agomez@mgl.com',
-            'password' => bcrypt('123456789')
-        ])->syncRoles(['Administrador']);
+            'password' => bcrypt('123456789'),
+            'licencia' => 1
+        ])->syncRoles(['Administrador','Administrador Empresa','Empleado']);
+        // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+        $usuario2 = User::create([
+            'name' => 'Monica Moya',
+            'email' => 'mony@gmail.com',
+            'password' => bcrypt('999999999')
+        ])->syncRoles(['Administrador Empresa']);
+        // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+        $usuario2 = User::create([
+            'name' => 'Pepe Moya',
+            'email' => 'pepe@gmail.com',
+            'password' => bcrypt('888888888')
+        ])->syncRoles(['Administrador Empresa']);
         // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     }
 }

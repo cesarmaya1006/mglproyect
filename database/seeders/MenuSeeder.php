@@ -31,7 +31,7 @@ class MenuSeeder extends Seeder
         // ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== ========== ==========
         $menus = [
             //Menu Inicio
-            ['nombre' => 'Dashboard', 'menu_id' => null, 'url' => 'dashboard', 'orden' => '1', 'icono' => 'mdi mdi-view-dashboard', 'Array_1' => []],
+            ['nombre' => 'Dashboard', 'menu_id' => null, 'url' => 'dashboard', 'orden' => '1', 'icono' => 'bi bi-speedometer', 'Array_1' => []],
             //Menu configuración 2
             [
                 'nombre' => 'Configuración Sistema', 'menu_id' => null, 'url' => '#', 'orden' => '2', 'icono' => 'fas fa-cogs',
@@ -43,7 +43,7 @@ class MenuSeeder extends Seeder
                     //Menu Menu_Roles
                     ['nombre' => 'Menú - Roles', 'menu_id' => '2',  'url' => 'dashboard/configuracion_sis/permisos_menus_rol', 'orden' => '2',  'icono' => 'fas fa-chalkboard-teacher', 'Array_1' => []],
                     //Menu Menu_Empresas
-                    ['nombre' => 'Menú - Empresas', 'menu_id' => '2',  'url' => 'dashboard/configuracion_sis/permisos_menus_empresas', 'orden' => '2',  'icono' => 'fas fa-grip-horizontal', 'Array_1' => []],
+                    ['nombre' => 'Modulos - Empresas', 'menu_id' => '2',  'url' => 'dashboard/configuracion_sis/permisos_menus_empresas', 'orden' => '2',  'icono' => 'fas fa-grip-horizontal', 'Array_1' => []],
                     //Menu permisos
                     ['nombre' => 'Permisos', 'menu_id' => '2',  'url' => 'dashboard/configuracion_sis/permiso_rutas', 'orden' => '2',  'icono' => 'fas fa-check-square', 'Array_1' => []],
                     //Menu permisos-rol
@@ -176,7 +176,7 @@ class MenuSeeder extends Seeder
         foreach ($empresas as $empresa) {
             DB::table('menu_empresas')->insert(['menu_id' => 1, 'empresa_id' => $empresa->id,]);
         }
-
+        
         for ($i = 11; $i < 17; $i++) {
             DB::table('menu_rol')->insert(['menu_id' => $i, 'rol_id' => 3,]);
             foreach ($empresas as $empresa) {

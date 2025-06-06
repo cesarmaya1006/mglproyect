@@ -11,18 +11,18 @@ use Spatie\Permission\Models\Role;
 
 class Menu extends Model
 {
-    use HasFactory,Notifiable;
+    use HasFactory, Notifiable;
     protected $table = 'menus';
     protected $guarded = [];
     //---------------------------------------------------------------
-    public function roles_menu ()
+    public function roles_menu()
     {
-        return $this->belongsToMany(Role::class,'menu_rol','menu_id','rol_id');
+        return $this->belongsToMany(Role::class, 'menu_rol', 'menu_id', 'rol_id');
     }
     //---------------------------------------------------------------
-    public function empresas_menu ()
+    public function empresas_menu()
     {
-        return $this->belongsToMany(Empresa::class,'menu_empresas','menu_id','empresa_id');
+        return $this->belongsToMany(Empresa::class, 'menu_empresas', 'menu_id', 'empresa_id');
     }
     //---------------------------------------------------------------
     public function getHijos($padres, $line)
@@ -37,31 +37,33 @@ class Menu extends Model
     }
     public function getPadres($front)
     {
-        $usuario = User::with('roles')->findOrFail(session('id_usuario'));
-        $ids =[];
+        $usuario = User::with('roles')->with('grupos_user')->with('empresas_user')->findOrFail(session('id_usuario'));
+
+        $ids = [];
 
         foreach ($usuario->roles as $rol) {
             $ids[] = $rol->id;
         }
 
         if ($front) {
-            if (in_array(1, $ids,true)) {
-
-                return $this->whereHas('roles_menu', function ($query) use($ids) {
+            if (in_array(1, $ids, true)) {
+                return $this->whereHas('roles_menu', function ($query) use ($ids) {
                     $query->whereIn('rol_id', $ids)->orderby('menu_id');
                 })->orderby('menu_id')
                     ->orderby('orden')
                     ->get()
                     ->toArray();
             } else {
-
-                return $this->whereHas('roles_menu', function ($query) use($ids) {
+                return $this->whereHas('roles_menu', function ($query) use ($ids) {
                     $query->whereIn('rol_id', $ids)->orderby('menu_id');
+                })->orWhere(function($p) use($usuario){
+                    if ($usuario->grupos_user->count()) {
+                        $p->whereIn('id',[2,10]);
+                    }
                 })->orderby('menu_id')
-                  ->orderby('orden')
-                  ->get()
-                  ->toArray();
-
+                    ->orderby('orden')
+                    ->get()
+                    ->toArray();
             }
         } else {
             return $this->orderby('menu_id')

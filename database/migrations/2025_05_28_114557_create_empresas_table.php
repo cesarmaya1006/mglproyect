@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->bigIncrements('id')->autoIncrement();
-            $table->unsignedBigInteger('grupo_id');
+            $table->unsignedBigInteger('grupo_id')->nullable();
             $table->foreign('grupo_id', 'fk_empresa_grupo')->references('id')->on('grupos')->onDelete('restrict')->onUpdate('restrict');
             $table->unsignedBigInteger('tipo_documento_id');
             $table->foreign('tipo_documento_id', 'fk_empresa_tipo_documentos')->references('id')->on('tipo_documentos')->onDelete('restrict')->onUpdate('restrict');
@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('telefono', 50)->nullable();
             $table->string('direccion')->nullable();
-            $table->string('contacto')->nullable();
-            $table->string('cargo')->nullable();
             $table->string('logo')->default('empresa1.png');
             $table->bigInteger('estado')->default(1);
             $table->timestamps();

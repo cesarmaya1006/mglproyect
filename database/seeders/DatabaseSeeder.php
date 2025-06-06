@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             MenuSeeder::class,
             UsuarioSeeder::class,
+            GrupoSeeder::class,
         ]);
     }
 }

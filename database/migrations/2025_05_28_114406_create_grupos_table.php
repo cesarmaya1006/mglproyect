@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('telefono', 50)->nullable();
             $table->string('direccion')->nullable();
-            $table->string('contacto')->nullable();
-            $table->string('cargo')->nullable();
             $table->string('logo')->nullable();
             $table->boolean('estado')->default(1);
             $table->timestamps();

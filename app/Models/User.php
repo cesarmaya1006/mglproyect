@@ -7,6 +7,8 @@ namespace App\Models;
 use App\Models\Config\Mensaje;
 use App\Models\Config\Notificacion;
 use App\Models\Empresa\Empleado;
+use App\Models\Empresa\Empresa;
+use App\Models\Empresa\Grupo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -77,6 +79,18 @@ class User extends Authenticatable
         return $this->belongsTo(Empleado::class, 'id');
     }
     //==================================================================================
+    //---------------------------------------------------------------
+    public function grupos_user ()
+    {
+        return $this->belongsToMany(Grupo::class,'grupo_user','user_id','grupo_id');
+    }
+    //==================================================================================
+    public function empresas_user ()
+    {
+        return $this->belongsToMany(Empresa::class,'empresa_user','user_id','empresa_id');
+    }
+
+    //==================================================================================
     public function notificaciones()
     {
         return $this->hasMany(Notificacion::class, 'usuario_id', 'id');
@@ -92,22 +106,23 @@ class User extends Authenticatable
         return $this->hasMany(Mensaje::class, 'destinatario_id', 'id');
     }
     //----------------------------------------------------------------------------------
+    public function getRoles()
+{
+    return (!$this->roles) ? $this->roles = $this->roles()->get() : $this->roles;
+}
     //==================================================================================
     public function setSession()
     {
         $roles = $this->getRoleNames();
-        $roles1 = substr($roles, 0, -1);
-        $roles1 = substr($roles1, 1);
-        $roles1 = str_replace('"', '', $roles1);
-        //$roles = explode(',',$roles);
-        $roles1 = $this->roles1;
+        $rolesFull = $this->getRoles();
+        $rolPrincipal = $rolesFull->first();
         $nombres_completos = $this->name;
         Session::put([
             'id_usuario' => $this->id,
             'nombres_completos' => $nombres_completos,
-            'rol_principal' => $roles1[0]['name'],
-            'rol_principal_id' => $roles1[0]['id'],
-            'roles' => $roles,
+            'rol_principal' => $rolPrincipal->name,
+            'rol_principal_id' => $rolPrincipal->id,
+            'roles' => $rolesFull,
             //'cant_notificaciones' => Notificacion::where('usuario_id',$this->id)->count(),
         ]);
     }
