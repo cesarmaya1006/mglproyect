@@ -5,6 +5,7 @@ use App\Http\Controllers\Config\MenuEmpresaController;
 use App\Http\Controllers\Config\MenuRolController;
 use App\Http\Controllers\Config\RolController;
 use App\Http\Controllers\Empresa\AreaController;
+use App\Http\Controllers\Empresa\CargoController;
 use App\Http\Controllers\Empresa\EmpresaController;
 use App\Http\Controllers\Extranet\ExtranetPageController;
 use App\Http\Controllers\Intranet\IntranetPageController;
@@ -96,6 +97,19 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', config('jetstream.auth_s
             Route::delete('eliminar/{id}', 'destroy')->name('areas.destroy');
             Route::get('getDependencias/{id}', 'getDependencias')->name('areas.getDependencias');
             Route::get('getAreas', 'getAreas')->name('areas.getAreas');
+        });
+        // ----------------------------------------------------------------------------------------
+        // Ruta Administrador del Sistema Cargos
+        Route::controller(CargoController::class)->prefix('cargos')->group(function () {
+            Route::get('', 'index')->name('cargos.index');
+            Route::get('crear', 'create')->name('cargos.create');
+            Route::get('editar/{id}', 'edit')->name('cargos.edit');
+            Route::post('guardar', 'store')->name('cargos.store');
+            Route::put('actualizar/{id}', 'update')->name('cargos.update');
+            Route::delete('eliminar/{id}', 'destroy')->name('cargos.destroy');
+            Route::get('getCargos', 'getCargos')->name('cargos.getCargos');
+            Route::get('getCargosTodos', 'getCargosTodos')->name('cargos.getCargosTodos');
+            Route::get('getAreas', 'getAreas')->name('cargos.getAreas');
         });
         // ----------------------------------------------------------------------------------------
     });

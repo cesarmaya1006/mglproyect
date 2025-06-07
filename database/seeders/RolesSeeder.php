@@ -44,6 +44,17 @@ class RolesSeeder extends Seeder
         Permission::create(['name' => 'empresa.destroy'])->syncRoles([$rol1, $rol2,$rol3]);
 
 
+        Permission::create(['name' => 'cargos.index'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'cargos.create'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'cargos.edit'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'cargos.store'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'cargos.update'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'cargos.destroy'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'cargos.getCargos'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'cargos.getCargosTodos'])->syncRoles([$rol1, $rol2,$rol3]);
+        Permission::create(['name' => 'cargos.getAreas'])->syncRoles([$rol1, $rol2,$rol3]);
+
+
 
 
 

@@ -59,7 +59,7 @@ class ExtranetPageController extends Controller
             $grupoNew['telefono'] = $request['telefono_empresa'];
             $grupoNew['direccion'] = $request['direccion_empresa'];
             $grupo_new = Empresa::create($grupoNew);
-            DB::table('grupo_user')->insert(['user_id' => $usuario_new->id, 'grupo_id' => $grupoNew->id, 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),]);
+            DB::table('grupo_user')->insert(['user_id' => $usuario_new->id, 'grupo_id' => $grupo_new->id, 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),]);
         }
         // - - - - - - - - - - - - - - - - - - - - - - - -
         return redirect('/acceso')->with('mensaje', 'Se realizó el registro de manera exitoza, puede ingresar con su cuenta de correo y el nit de la empresa.');
