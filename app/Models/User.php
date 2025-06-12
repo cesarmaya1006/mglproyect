@@ -123,6 +123,7 @@ class User extends Authenticatable
             'rol_principal' => $rolPrincipal->name,
             'rol_principal_id' => $rolPrincipal->id,
             'roles' => $rolesFull,
+            'foto' => $this->foto,
             //'cant_notificaciones' => Notificacion::where('usuario_id',$this->id)->count(),
         ]);
     }

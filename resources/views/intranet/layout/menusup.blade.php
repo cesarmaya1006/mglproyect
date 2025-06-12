@@ -8,19 +8,10 @@
                     <i class="bi bi-list"></i>
                 </a>
             </li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
         </ul>
         <!--end::Start Navbar Links-->
         <!--begin::End Navbar Links-->
         <ul class="navbar-nav ms-auto">
-            <!--begin::Navbar Search-->
-            <li class="nav-item">
-                <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                    <i class="bi bi-search"></i>
-                </a>
-            </li>
-            <!--end::Navbar Search-->
             <!--begin::Messages Dropdown Menu-->
             <li class="nav-item dropdown">
                 <a class="nav-link" data-bs-toggle="dropdown" href="#">
@@ -32,14 +23,12 @@
                         <!--begin::Message-->
                         <div class="d-flex">
                             <div class="flex-shrink-0">
-                                <img src="{{asset('admilte/dist/assets/img/user1-128x128.jpg')}}" alt="User Avatar"
-                                    class="img-size-50 rounded-circle me-3" />
+                                <img src="{{ asset('adminlte/dist/assets/img/user1-128x128.jpg') }}" alt="User Avatar" class="img-size-50 rounded-circle me-3" />
                             </div>
                             <div class="flex-grow-1">
                                 <h3 class="dropdown-item-title">
                                     Brad Diesel
-                                    <span class="float-end fs-7 text-danger"><i
-                                            class="bi bi-star-fill"></i></span>
+                                    <span class="float-end fs-7 text-danger"><i class="bi bi-star-fill"></i></span>
                                 </h3>
                                 <p class="fs-7">Call me whenever you can...</p>
                                 <p class="fs-7 text-secondary">
@@ -54,8 +43,7 @@
                         <!--begin::Message-->
                         <div class="d-flex">
                             <div class="flex-shrink-0">
-                                <img src="{{asset('admilte/dist/assets/img/user8-128x128.jpg')}}" alt="User Avatar"
-                                    class="img-size-50 rounded-circle me-3" />
+                                <img src="{{ asset('adminlte/dist/assets/img/user8-128x128.jpg') }}" alt="User Avatar" class="img-size-50 rounded-circle me-3" />
                             </div>
                             <div class="flex-grow-1">
                                 <h3 class="dropdown-item-title">
@@ -77,8 +65,7 @@
                         <!--begin::Message-->
                         <div class="d-flex">
                             <div class="flex-shrink-0">
-                                <img src="{{asset('admilte/dist/assets/img/user3-128x128.jpg')}}" alt="User Avatar"
-                                    class="img-size-50 rounded-circle me-3" />
+                                <img src="{{ asset('adminlte/dist/assets/img/user3-128x128.jpg') }}" alt="User Avatar" class="img-size-50 rounded-circle me-3" />
                             </div>
                             <div class="flex-grow-1">
                                 <h3 class="dropdown-item-title">
@@ -128,6 +115,36 @@
                 </div>
             </li>
             <!--end::Notifications Dropdown Menu-->
+            <!--begin::User Menu Dropdown-->
+            <li class="nav-item dropdown user-menu mb-3">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <img src="{{ asset('imagenes/usuarios/'. session('foto')) }}" class="user-image rounded-circle shadow" alt="User Image" />
+                    <span class="d-none d-md-inline">{{ session('nombres_completos') }}</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                    <!--begin::User Image-->
+                    <li class="user-header text-bg-primary pb-5">
+                        <img src="{{ asset('imagenes/usuarios/'. session('foto')) }}" class="rounded-circle shadow" alt="User Image" />
+                        <p class="mb-3">
+                            {{ session('nombres_completos') }} - {{ session('rol_principal') }}
+                            <small></small>
+                        </p>
+                    </li>
+                    <!--end::User Image-->
+                    <!--begin::Menu Body-->
+                    <!--end::Menu Body-->
+                    <!--begin::Menu Footer-->
+                    <li class="user-footer">
+                        <form class="col-12 form-horizontal" id="formSalir" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            @method('post')
+                            <button type="submit" id="btnSalirID" class="btn btn-default btn-flat float-end">Salir</button>
+                        </form>
+                    </li>
+                    <!--end::Menu Footer-->
+                </ul>
+            </li>
+            <!--end::User Menu Dropdown-->
             <!--begin::Fullscreen Toggle-->
             <li class="nav-item">
                 <a class="nav-link" href="#" data-lte-toggle="fullscreen">
@@ -136,36 +153,7 @@
                 </a>
             </li>
             <!--end::Fullscreen Toggle-->
-            <!--begin::User Menu Dropdown-->
-            <li class="nav-item dropdown user-menu">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                    <img src="{{asset('admilte/dist/assets/img/user2-160x160.jpg')}}"
-                        class="user-image rounded-circle shadow" alt="User Image" />
-                    <span class="d-none d-md-inline">{{ session('nombres_completos') }}</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                    <!--begin::User Image-->
-                    <li class="user-header text-bg-primary">
-                        <img src="{{asset('admilte/dist/assets/img/user2-160x160.jpg')}}" class="rounded-circle shadow"
-                            alt="User Image" />
-                        <p>
-                            {{ session('nombres_completos') }} - Web Developer
-                            <small>Member since Nov. 2023</small>
-                        </p>
-                    </li>
-                    <!--end::User Image-->
-                    <!--begin::Menu Footer-->
-                    
-                    <!--end::Menu Footer-->
-                </ul>
-                <li class="user-footer d-flex">
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf @method('post')
-                            <button id="popoverData" type="submit" class="btn btn-default btn-flat float-end" data-content="Salir de la plataforma">Salir</button>
-                        </form>
-                    </li>
-            </li>
-            <!--end::User Menu Dropdown-->
+
         </ul>
         <!--end::End Navbar Links-->
     </div>

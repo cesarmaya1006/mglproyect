@@ -8,26 +8,23 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('imagenes/sistema/logo_peque.png') }}">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ asset('adminlte3/plugins/fontawesome-free/css/all.min.css') }}">
+
     <title>MGL - Tech</title>
-    <style>
-    label.requerido:after {
-        content: ' *';
-        color: red;
-    }
-    .form-control-sm{
-        border: 1px solid black;
-    }
-    </style>
+
     @include('includes.tailwindcss')
     <style>
-        label{
+        label {
             font-size: 0.8em;
             font-weight: bold;
         }
-    </style>
-    <link rel="stylesheet" href="{{asset('admilte/dist/css/adminlte.css')}}" />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+    </style>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('adminlte3/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/extranet/general.css') }}">
     @yield('cssPagina')
 </head>
 
@@ -42,9 +39,7 @@
                                 <a class="navbar-brand" href="{{route('extranet.index')}}">
                                     <img src="{{asset('imagenes/sistema/mgl_logo.png')}}" alt="" width="30" height="24">
                                 </a>
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                    aria-expanded="false" aria-label="Toggle navigation">
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -71,8 +66,14 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js"></script>
+    <!-- jQuery -->
+    <script src="{{ asset('adminlte3/plugins/jquery/jquery.min.js') }}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('adminlte3/dist/js/adminlte.min.js') }}"></script>
     @yield('scriptPagina');
 </body>
 

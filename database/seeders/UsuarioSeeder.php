@@ -33,6 +33,7 @@ class UsuarioSeeder extends Seeder
             'name' => 'Cesar Maya',
             'email' => 'cesarmaya1006@gmail.com',
             'password' => bcrypt('123456789'),
+            'foto' => 'cesar_maya.png',
             'licencia' => 1
         ])->syncRoles('Super Administrador','Administrador','Administrador Empresa','Empleado');
         // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -53,13 +54,13 @@ class UsuarioSeeder extends Seeder
         $usuario2 = User::create([
             'name' => 'Monica Moya',
             'email' => 'mony@gmail.com',
-            'password' => bcrypt('999999999')
+            'password' => bcrypt('123456789')
         ])->syncRoles(['Administrador Empresa']);
         // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         $usuario2 = User::create([
             'name' => 'Pepe Moya',
             'email' => 'pepe@gmail.com',
-            'password' => bcrypt('888888888')
+            'password' => bcrypt('123456789')
         ])->syncRoles(['Administrador Empresa']);
         // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     }

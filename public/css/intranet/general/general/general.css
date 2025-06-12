@@ -162,3 +162,7 @@ label.requerido:after {
 input{
     border: 1px solid black;
 }
+
+.dropdown-item{
+    min-width: 300px;
+}
