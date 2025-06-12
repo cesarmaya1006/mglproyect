@@ -18,7 +18,7 @@
 @endsection
 
 @section('botones_card')
-    <a href="{{ route('rol.create') }}" class="btn btn-info btn-sm btn-sombra text-center pl-5 pr-5 float-md-end">
+    <a href="{{ route('rol.create') }}" class="btn btn-info btn-xs btn-sombra text-center pl-5 pr-5 float-md-end">
         <i class="fa fa-plus-circle mr-3" aria-hidden="true"></i>
         Nuevo registro
     </a>
