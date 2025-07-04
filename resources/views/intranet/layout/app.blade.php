@@ -9,6 +9,7 @@
 <!--begin::Body-->
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    @yield('phpPagina')
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
         <!--begin::Header-->
@@ -50,7 +51,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 mt-4">
                             @include('includes.mensaje')
                             @include('includes.error-form')
                         </div>

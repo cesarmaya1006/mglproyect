@@ -68,6 +68,6 @@
 @section('modales')
 @endsection
 
-@section('script_pagina')
+@section('scriptPagina')
 <script src="{{ asset('js/intranet/empresa/area/crear.js') }}"></script>
 @endsection

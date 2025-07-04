@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Empresa;
 
 use App\Http\Controllers\Controller;
+use App\Models\Empresa\Area;
+use App\Models\Empresa\Cargo;
 use App\Models\Empresa\Grupo;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -32,14 +34,19 @@ class CargoController extends Controller
      */
     public function create()
     {
-        $usuario = User::with('roles')->findOrFail(session('id_usuario'));
-        if ($usuario->hasRole(['Administrador Sistema','Administrador'] )) {
-            $grupos = GrupoEmpresa::get();
-            return view('intranet.empresa.cargo.crear', compact('grupos'));
+        $usuario = User::findOrFail(session('id_usuario'));
+        if (in_array("Super Administrador", $usuario->getRoleNames()->toArray())||in_array("Administrador", $usuario->getRoleNames()->toArray())) {
+            $grupos = Grupo::get();
         } else {
-            $grupo = $usuario->empleado->cargo->area->empresa->grupo;
-            return view('intranet.empresa.cargo.crear', compact('grupo'));
+            if ($usuario->grupos_user->count()) {
+                $grupos = $usuario->grupos_user;
+            } else {
+                $grupos = $usuario->empresas_user;
+            }
         }
+        return view('intranet.empresa.cargo.crear', compact('usuario','grupos'));
+
+
     }
 
     /**
@@ -64,15 +71,19 @@ class CargoController extends Controller
      */
     public function edit(string $id)
     {
-        $usuario = User::with('roles')->findOrFail(session('id_usuario'));
         $cargo_edit = Cargo::findOrFail($id);
-        if ($usuario->hasRole(['Administrador Sistema','Administrador'] )) {
-            $grupos = GrupoEmpresa::get();
-            return view('intranet.empresa.cargo.editar', compact('grupos','cargo_edit'));
+        $usuario = User::findOrFail(session('id_usuario'));
+        if (in_array("Super Administrador", $usuario->getRoleNames()->toArray())||in_array("Administrador", $usuario->getRoleNames()->toArray())) {
+            $grupos = Grupo::get();
         } else {
-            $grupo = $usuario->empleado->cargo->area->empresa->grupo;
-            return view('intranet.empresa.cargo.editar', compact('grupo','cargo_edit'));
+            if ($usuario->grupos_user->count()) {
+                $grupos = $usuario->grupos_user;
+            } else {
+                $grupos = $usuario->empresas_user;
+            }
         }
+
+        return view('intranet.empresa.cargo.editar', compact('usuario','grupos','cargo_edit'));
     }
 
     /**
@@ -120,6 +131,16 @@ class CargoController extends Controller
         }
     }
     public function getCargosTodos(Request $request){
+        if ($request->ajax()) {
+            $empresa_id = $_GET['id'];
+            return response()->json(['cargos' => Cargo::with('area')->whereHas('area', function($q) use($empresa_id){
+                $q->where('empresa_id', $empresa_id);
+            })->get()]);
+        } else {
+            abort(404);
+        }
+    }
+    public function getCargosAreas(Request $request){
         if ($request->ajax()) {
             $empresa_id = $_GET['id'];
             return response()->json(['cargos' => Cargo::with('area')->whereHas('area', function($q) use($empresa_id){

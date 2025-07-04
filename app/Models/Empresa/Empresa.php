@@ -3,6 +3,7 @@
 namespace App\Models\Empresa;
 
 use App\Models\Confi\TipoDocumento;
+use App\Models\Config\Menu;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -38,5 +39,11 @@ class Empresa extends Model
         return $this->hasMany(Area::class, 'empresa_id', 'id');
     }
     //----------------------------------------------------------------------------------
+    //---------------------------------------------------------------
+    public function menu_empresas()
+    {
+        return $this->belongsToMany(Menu::class, 'menu_empresas', 'empresa_id', 'menu_id');
+    }
+    //---------------------------------------------------------------
     //==================================================================================
 }

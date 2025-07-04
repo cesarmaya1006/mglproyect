@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             UsuarioSeeder::class,
             GrupoSeeder::class,
+            AreaSeeder::class,
+            CargoSeeder::class,
         ]);
     }
 }

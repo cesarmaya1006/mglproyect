@@ -2,6 +2,7 @@
 
 namespace App\Models\Config;
 
+use App\Models\Empresa\Empleado;
 use App\Models\Empresa\Empresa;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -81,7 +82,26 @@ class Menu extends Model
             if ($line['menu_id'] != 0)
                 break;
             $item = [array_merge($line, ['submenu' => $menus->getHijos($padres, $line)])];
-            $menuAll = array_merge($menuAll, $item);
+            foreach (session('roles') as $rol) {
+                $rolArray[] = $rol['name'];
+            }
+            if (in_array("Empleado", $rolArray)&&(!in_array('Super Administrador', $rolArray)||!in_array('Administrador', $rolArray)||!in_array('Administrador Empresa', $rolArray))) {
+                $empleado = Empleado::findOrFail(session('id_usuario'));
+                //dd($empleado->cargo->area->empresa->menu_empresas->pluck('id'));
+                $menuID = [];
+                foreach ($empleado->cargo->area->empresa->menu_empresas as $idMenu) {
+                    $menuID[] = $idMenu->id;
+                }
+
+                if (in_array($line['id'],$menuID)) {
+                    $menuAll = array_merge($menuAll, $item);
+                }
+
+            } else {
+                $menuAll = array_merge($menuAll, $item);
+            }
+
+
         }
         return $menuAll;
     }

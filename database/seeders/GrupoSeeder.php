@@ -35,8 +35,18 @@ class GrupoSeeder extends Seeder
             'logo' => 'empresa3.png',
         ]);
         DB::table('grupo_user')->insert(['user_id' => 5, 'grupo_id' => 1, 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),]);
-        // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         $empresa1 = Empresa::create([
+            'grupo_id' => 1,
+            'tipo_documento_id' => 6,
+            'identificacion' => '888888888',
+            'empresa' => 'Empresa Grupo 1',
+            'email' => 'grupo1@gmail.com',
+            'telefono' => '3216548787',
+            'direccion' => 'Calle 2 # 1-121',
+            'logo' => 'empresa3.png',
+        ]);
+        // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+        $empresa2 = Empresa::create([
             'tipo_documento_id' => 6,
             'identificacion' => '999999999',
             'empresa' => 'Empresa Prueba 1',
@@ -45,7 +55,6 @@ class GrupoSeeder extends Seeder
             'direccion' => 'Calle 1 # 1-122',
             'logo' => 'empresa1.png',
         ]);
-
         DB::table('empresa_user')->insert(['user_id' => 4, 'empresa_id' => 1, 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),]);
     }
 }

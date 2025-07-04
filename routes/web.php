@@ -6,6 +6,7 @@ use App\Http\Controllers\Config\MenuRolController;
 use App\Http\Controllers\Config\RolController;
 use App\Http\Controllers\Empresa\AreaController;
 use App\Http\Controllers\Empresa\CargoController;
+use App\Http\Controllers\Empresa\EmpleadoController;
 use App\Http\Controllers\Empresa\EmpresaController;
 use App\Http\Controllers\Extranet\ExtranetPageController;
 use App\Http\Controllers\Intranet\IntranetPageController;
@@ -109,7 +110,20 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', config('jetstream.auth_s
             Route::delete('eliminar/{id}', 'destroy')->name('cargos.destroy');
             Route::get('getCargos', 'getCargos')->name('cargos.getCargos');
             Route::get('getCargosTodos', 'getCargosTodos')->name('cargos.getCargosTodos');
-            Route::get('getAreas', 'getAreas')->name('cargos.getAreas');
+            Route::get('getCargosAreas', 'getCargosAreas')->name('cargos.getCargosAreas');
+        });
+        // ----------------------------------------------------------------------------------------
+        // Ruta Administrador del Sistema Cargos
+        Route::controller(EmpleadoController::class)->prefix('empleados')->group(function () {
+            Route::get('', 'index')->name('empleados.index');
+            Route::get('crear', 'create')->name('empleados.create');
+            Route::get('editar/{id}', 'edit')->name('empleados.edit');
+            Route::post('guardar', 'store')->name('empleados.store');
+            Route::put('actualizar/{id}', 'update')->name('empleados.update');
+            Route::delete('eliminar/{id}', 'destroy')->name('empleados.destroy');
+            Route::get('getEmpleadosEmpresa', 'getEmpleadosEmpresa')->name('empleados.getEmpleadosEmpresa');
+            Route::get('getCargosAreas', 'getCargosAreas')->name('empleados.getCargosAreas');
+
         });
         // ----------------------------------------------------------------------------------------
     });

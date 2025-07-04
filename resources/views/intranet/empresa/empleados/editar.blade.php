@@ -4,31 +4,31 @@
 @section('css_pagina')
 @endsection
 @section('tituloPagina')
-    <i class="fas fa-user-tie mr-3" aria-hidden="true"></i> Configuración Cargos
+    <i class="fas fa-users mr-3" aria-hidden="true"></i> Configuración Empleados
 @endsection
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Inicio</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('cargos.index') }}">Cargos</a></li>
-    <li class="breadcrumb-item active">Cargos - Crear</li>
+    <li class="breadcrumb-item"><a href="{{ route('empleados.index') }}">Empleados</a></li>
+    <li class="breadcrumb-item active">Empleados - Editar</li>
 @endsection
 @section('titulo_card')
-    <i class="fa fa-edit mr-3" aria-hidden="true"></i> Editar Cargo
+    <i class="fa fa-edit mr-3" aria-hidden="true"></i> Editar Empleado
 @endsection
 @section('botones_card')
-    @can('cargos.index')
-        <a href="{{route('cargos.index')}}" class="btn btn-success btn-sm mini_sombra pl-5 pr-5 float-md-end" style="font-size: 0.8em;">
-        <i class="fas fa-reply mr-2"></i>
-        Volver
-    </a>
+    @can('empleados.index')
+        <a href="{{route('empleados.index')}}" class="btn btn-success btn-sm mini_sombra pl-5 pr-5 float-md-end" style="font-size: 0.8em;">
+            <i class="fas fa-reply mr-2"></i>
+            Volver
+        </a>
     @endcan
 @endsection
 @section('cuerpoPagina')
-    @can('cargos.edit')
+    @can('empleados.edit')
         <div class="row d-flex justify-content-center">
-            <form class="col-12 form-horizontal" action="{{ route('cargos.update',['id'=>$cargo_edit]) }}" method="POST" autocomplete="off" enctype="multipart/form-data">
+            <form class="col-12 form-horizontal" action="{{ route('empleados.update',['id'=>$empleado_edit]) }}" method="POST" autocomplete="off" enctype="multipart/form-data">
                 @csrf
                 @method('put')
-                @include('intranet.empresa.cargo.form')
+                @include('intranet.empresa.empleados.form')
                 <div class="row mt-5">
                     <div class="col-12 mb-4 mb-md-0 d-grid gap-2 d-md-block ">
                         <button type="submit" class="btn btn-primary btn-sm mini_sombra pl-sm-5 pr-sm-5" style="font-size: 0.8em;">Actualizar</button>
@@ -57,5 +57,5 @@
 @endsection
 
 @section('scriptPagina')
-<script src="{{ asset('js/intranet/empresa/area/crear.js') }}"></script>
+<script src="{{ asset('js/intranet/empresa/empleados/crear.js') }}"></script>
 @endsection
