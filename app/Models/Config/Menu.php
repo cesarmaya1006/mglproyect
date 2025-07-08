@@ -100,8 +100,6 @@ class Menu extends Model
             } else {
                 $menuAll = array_merge($menuAll, $item);
             }
-
-
         }
         return $menuAll;
     }

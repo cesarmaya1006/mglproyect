@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             GrupoSeeder::class,
             AreaSeeder::class,
             CargoSeeder::class,
+            EmpleadoSeeder::class,
         ]);
     }
 }

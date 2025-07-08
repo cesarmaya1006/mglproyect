@@ -23,6 +23,10 @@ class GrupoSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
         DB::table('empresas')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0;');
+        DB::table('menu_empresas')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
         // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         $grupo1 = Grupo::create([
@@ -56,5 +60,21 @@ class GrupoSeeder extends Seeder
             'logo' => 'empresa1.png',
         ]);
         DB::table('empresa_user')->insert(['user_id' => 4, 'empresa_id' => 1, 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),]);
+
+        $dataMenuEmpresas = [
+            ['menu_id' => 35,'empresa_id' => 1],
+            ['menu_id' => 36,'empresa_id' => 1],
+            ['menu_id' => 37,'empresa_id' => 1],
+            ['menu_id' => 35,'empresa_id' => 2],
+            ['menu_id' => 36,'empresa_id' => 2],
+            ['menu_id' => 37,'empresa_id' => 2],
+
+        ];
+        foreach ($dataMenuEmpresas as $data) {
+            DB::table('menu_empresas')->insert([
+                'menu_id' => $data['menu_id'],
+                'empresa_id' => $data['empresa_id'],
+            ]);
+        }
     }
 }

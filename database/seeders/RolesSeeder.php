@@ -66,6 +66,69 @@ class RolesSeeder extends Seeder
 
 
 
+        // Permisos proyectos
+        Permission::create(['name' => 'proyectos.index'])->syncRoles([$rol1, $rol2,$rol4]);
+        Permission::create(['name' => 'proyectos.create'])->syncRoles([$rol1, $rol2,$rol4]);
+        Permission::create(['name' => 'proyectos.edit'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'proyectos.destroy'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'proyectos.detalle'])->syncRoles([$rol1, $rol2]);
+        Permission::create(['name' => 'proyectos.gestion'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'proyectos.proyecto_empresas'])->syncRoles([$rol1]);
+        //---------------------------------------------------------------------------------------------
+        //vistas
+        Permission::create(['name' => 'proyectos.ver_datos_empresa'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'proyectos.ver_estadistica_tareas'])->syncRoles([$rol1, $rol2, $rol3]);
+        Permission::create(['name' => 'proyectos.ver_calendario_tareas'])->syncRoles([$rol1, $rol2, $rol3]);
+        //---------------------------------------------------------------------------------------------
+        Permission::create(['name' => 'caja_presupuestos'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'exportar_proyecto'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'personal_asignado_proyecto'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'tareas_vec_gestion_proyecto'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'tareas_vec_gestion_proyecto_todas'])->syncRoles([$rol1]);
+
+        // Permisos componentes
+        Permission::create(['name' => 'componentes.index'])->syncRoles([$rol1, $rol4]);
+        Permission::create(['name' => 'componentes.create'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'componentes.edit'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'componentes.destroy'])->syncRoles([$rol1]);
+        //---------------------------------------------------------------------------------------------
+        Permission::create(['name' => 'gestion_ver_componentes_info'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'ver_presupuesto_componentes'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'ver_presupuesto_proyecto'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'ver_tareas_componentes'])->syncRoles([$rol1]);
+        // - *  - *  - *  - *  - *  - *  - *  - *  - *  - *  - *  - *  - *  - *  - *  - *  - *  - *  - *  - *  - * -
+
+        // Permisos Tareas
+        Permission::create(['name' => 'tareas.index'])->syncRoles([$rol1, $rol4]);
+        Permission::create(['name' => 'tareas.create'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'tareas.edit'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'tareas.destroy'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'tareas.gestion'])->syncRoles([$rol1]);
+        //---------------------------------------------------------------------------------------------
+        Permission::create(['name' => 'ver_tareas'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'tareas_vencidas'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'tareas_gestion_ver_datos_proy'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'tareas_gestion_ver_presupuesto_proyecto'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'tareas_gestion_ver_presupuesto_componente'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'tareas_gestion_ver_datos_comp'])->syncRoles([$rol1]);
+        // Permisos historial
+        Permission::create(['name' => 'historiales.index'])->syncRoles([$rol1, $rol4]);
+        Permission::create(['name' => 'historiales.create'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'historiales.edit'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'historiales.destroy'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'historiales.gestion'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'historiales.store_tarea'])->syncRoles([$rol1,$rol4]);
+
+        //---------------------------------------------------------------------------------------------
+        // Permisos Subtareas
+        Permission::create(['name' => 'subtareas.create'])->syncRoles([$rol1]);
+        Permission::create(['name' => 'subtareas.gestion'])->syncRoles([$rol1]);
+        //---------------------------------------------------------------------------------------------
+
+
+
+
+
 
 
 
