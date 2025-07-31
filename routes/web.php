@@ -141,10 +141,19 @@ Route::prefix('dashboard')->middleware(['auth:sanctum', config('jetstream.auth_s
             Route::controller(ProyectoController::class)->group(function () {
                 Route::get('', 'index')->name('proyectos.index');
                 Route::get('crear', 'create')->name('proyectos.create');
+                Route::get('editar/{id}', 'edit')->name('proyectos.edit');
+                Route::get('detalle/{id}', 'show')->name('proyectos.detalle');
+                Route::post('guardar', 'store')->name('proyectos.store');
+                Route::put('actualizar/{id}', 'update')->name('proyectos.update');
+                Route::delete('eliminar/{id}', 'destroy')->name('proyectos.destroy');
+                // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                Route::get('gestion/{id}/{notificacion_id?}', 'gestion')->name('proyectos.gestion');
+                Route::get('expotar_informeproyecto/{id}', 'expotar_informeproyecto')->name('proyectos.expotar_informeproyecto');
                 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                 Route::get('getEmpresas', 'getEmpresas')->name('proyectos.getEmpresas');
                 Route::get('getEmpleados', 'getEmpleados')->name('proyectos.getEmpleados');
-                // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+                Route::get('getproyectos/{estado}/{config_empresa_id}', 'getproyectos')->name('proyectos.getproyectos');
             });
             // ----------------------------------------------------------------------------------------
             // ------------------------------------------------------------------------------------

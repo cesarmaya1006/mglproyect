@@ -60,7 +60,8 @@ class UsuarioSeeder extends Seeder
         $usuario2 = User::create([
             'name' => 'Pepe Moya',
             'email' => 'pepe@gmail.com',
-            'password' => bcrypt('123456789')
+            'password' => bcrypt('123456789'),
+            'licencia' => 1
         ])->syncRoles(['Administrador Empresa']);
         // -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     }

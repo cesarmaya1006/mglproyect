@@ -26,11 +26,11 @@
 @endsection
 @section('cuerpoPagina')
     @can('proyectos.index')
-        <div class="row">
+        <div class="row d-flex justify-content-around">
             <div class="col-12 col-md-4 text-white rounded mini_sombra" style="background-color: rgb(64, 36, 221);">
                 <div class="caja_textos row m-3 m-md-2">
                     <div class="col-12">
-                        <h4>¡Bienvenido de nuevo</h4>
+                        <h4>¡Bienvenido(a) de nuevo</h4>
                         <h4>{{ session('nombres_completos') }}!</h4>
                     </div>
                     <div class="col-12 mt-2 mt-md-5 mb-4">
@@ -62,70 +62,10 @@
                 </div>
                 <img src="{{ asset('imagenes/sistema/robot.png') }}" alt="" style="position: absolute;right: 0px;bottom: 10px; max-height: 70%;width: auto;">
             </div>
-            <div class="col-12 col-md-8">
-                <div class="row p-1 d-flex align-items-center">
-                    @if (session('rol_principal_id')==3)
-                        @if (session('transversal'))
-                            <div class="col-12 col-md-4 p-2">
-                                <a class="small-box bg-light mini_sombra" style="text-decoration: none;">
-                                    <div class="inner">
-                                        <h3>{{$usuario->empleado->empresas_tranv->count()}}</h3>
-                                        <p style="font-size: 0.95em;">Empresas Tranversales</p>
-                                    </div>
-                                    <div class="icon text-cyan">
-                                        <i class="fas fa-building"></i>
-                                    </div>
-                                </a>
-                            </div>
-                        @endif
-                        @php
-                            $usuarios_activ = 0;
-                            $usuarios_inact = 0;
-                            if (session('transversal')) {
-                                foreach ($usuario->empleado->empresas_tranv as $empresa) {
-                                    foreach ($empresa->areas as $area) {
-                                        foreach ($area->cargos as $cargo) {
-                                            $usuarios_activ+= $cargo->empleados->where('estado',1)->count();
-                                            $usuarios_inact+= $cargo->empleados->where('estado',0)->count();
-                                        }
-                                    }
-                                }
-                            } else {
-                                foreach ($usuario->empleado->cargo->area->empresa as $area) {
-                                    foreach ($area->cargos as $cargo) {
-                                        $usuarios_activ+= $cargo->empleados->where('estado',1)->count();
-                                        $usuarios_inact+= $cargo->empleados->where('estado',0)->count();
-                                    }
-                                }
-                            }
-                        @endphp
-                        <div class="col-12 col-md-4 p-2">
-                            <a href="{{route('empleados.index')}}" class="small-box bg-light mini_sombra" style="text-decoration: none;">
-                                <div class="inner">
-                                    <h3>{{$usuarios_activ}}</h3>
-                                    <p style="font-size: 0.95em;">Usuarios Activos</p>
-                                </div>
-                                <div class="icon text-success">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-12 col-md-4 p-2">
-                            <a href="{{route('empleados.index')}}" class="small-box bg-light mini_sombra" style="text-decoration: none;">
-                                <div class="inner">
-                                    <h3>{{$usuarios_inact}}</h3>
-                                    <p style="font-size: 0.95em;">Usuarios Inactivos</p>
-                                </div>
-                                <div class="icon text-success">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                            </a>
-                        </div>
-                    @endif
-                </div>
-                <div class="row p-1 d-flex align-items-center">
-                    <div class="col-12 col-md-4 p-2">
-                        <div class="small-box bg-light mini_sombra ver_proyectos" id="proyectos_lider" style="cursor: pointer;" data_id="{{session('id_usuario')}}" data_url="{{route('empleados.getproyectosLider')}}">
+            <div class="col-12 col-md-5 mt-md-0 mt-4">
+                <div class="row d-flex justify-center">
+                    <div class="col-12 col-md-8">
+                        <div class="small-box bg-light mini_sombra ver_proyectos" id="proyectos_lider" style="cursor: pointer;border: 1px solid black;" data_id="{{session('id_usuario')}}" data_url="{{route('empleados.getproyectosLider')}}">
                             <div class="inner">
                                 <h3>{{$usuario->empleado->proyectos->where('estado','Activo')->count()}}</h3>
                                 <p style="font-size: 0.95em;">Lider Proyectos</p>
@@ -135,8 +75,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4 p-2">
-                        <div class="small-box bg-light mini_sombra ver_proyectos" id="proyectos_activos" style="cursor: pointer;" data_id="{{session('id_usuario')}}" data_url="{{route('empleados.getproyectos')}}">
+                    <div class="col-12 col-md-8">
+                        <div class="small-box bg-light mini_sombra ver_proyectos" id="proyectos_activos" style="cursor: pointer;border: 1px solid black;" data_id="{{session('id_usuario')}}" data_url="{{route('empleados.getproyectos')}}">
                             <div class="inner">
                                 <h3>{{$usuario->empleado->miembro_proyectos->where('estado','Activo')->count()}}</h3>
                                 <p style="font-size: 0.95em;">Proyectos Activos</p>
@@ -146,8 +86,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-4 p-2">
-                        <div class="small-box bg-light mini_sombra" style="text-decoration: none;">
+                    <div class="col-12 col-md-8">
+                        <div class="small-box bg-light mini_sombra" style="text-decoration: none;border: 1px solid black;">
                             <div class="inner">
                                 <h3>{{$usuario->empleado->miembro_proyectos->where('estado','Terminado')->count()}}</h3>
                                 <p style="font-size: 0.95em;">Proyectos Terminados</p>
@@ -577,6 +517,162 @@
 @endsection
 
 @section('modales')
+<div class="modal fade" id="proyectosModal" tabindex="-1" aria-labelledby="proyectosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="proyectosModalLabel">Proyectos</h5>
+                <button type="button" class="btn-close boton_cerrar_modal" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" style="font-size: 0.8em;">
+                <table class="table table-striped table-hover table-sm display nowrap" style="width:100%" id="tabla_proyectos">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>#</th>
+                            <th>Proyecto</th>
+                            <th>Lider</th>
+                            <th>Miembros de Equipo</th>
+                            <th>Gestión/Días</th>
+                            <th>Progreso proyecto</th>
+                            <th class="text-center">Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody_proyectos">
+
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary btn-xs btn-sombra boton_cerrar_modal" data-bs-dismiss="modal"><span class="pl-4 pr-4">Cerrar</span></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================================================================ -->
+<div class="modal fade" id="tareasModal" tabindex="-1" aria-labelledby="tareasModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tareasModalLabel">Tareas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover table-sm nowrap" style="width:100%" id="tabla_tareas">
+                    <thead>
+                        <tr>
+                            <th class="width70"></th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Titulo</th>
+                            <th class="text-center" scope="col">Fecha de creación</th>
+                            <th class="text-center" scope="col">Fecha límite</th>
+                            <th class="text-center" scope="col">Progreso</th>
+                            <th class="text-center" scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody_tareas">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================================================================ -->
+<input type="hidden" id="ruta_tareas_gestion" data_url="{{ route('tareas.gestion', ['id' => 1]) }}">
+<input type="hidden" id="folder_imagenes_usuario" value="{{asset('imagenes/usuarios/')}}">
+<input type="hidden" id="input_getdetalleproyecto" value="{{route('proyectos.detalle',['id' => 1])}}">
+<input type="hidden" id="id_usuario" value="{{session('id_usuario')}}" data_url_proyLider="{{route('empleados.getProyectosGraficosLider')}}">
+<input type="hidden" id="empleados_calendar_empleado" data_url="{{route('empleados.calendar_empleado')}}" >
+<!-- Fin Modal proyectos empresas  -->
+<!-- Modal crear grupos tareas  -->
+<input type="hidden" id="getTareasEmpleadoGrupos" data_url="{{route('tareas.getTareasEmpleadoGrupos')}}">
+<div class="modal fade" id="gruposTareasModal" tabindex="-1" aria-labelledby="gruposTareasModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="gruposTareasModalLabel">Grupos Tareas</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="bodyTareasEmpleadoGrupos">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>Nuevo Grupo</h5>
+                            </div>
+                            <form class="col-12 form-horizontal" id="formNuevoGrupo" action="{{ route('tareas.createEmplGrupoTareas',['empleado_id' => session('id_usuario')]) }}" method="POST" autocomplete="off" enctype="multipart/form-data">
+                                @csrf
+                                @method('post')
+                                <div class="row">
+                                    <div class="col-12 form-group">
+                                        <label class="requerido" for="grupo">Nombre del Grupo</label>
+                                        <input type="text" class="form-control form-control-sm" name="grupo" id="grupo" required>
+                                    </div>
+                                    <div class="col-12 form-group">
+                                        <label class="requerido" for="fecha_ini">Fecha Inicial</label>
+                                        <input type="date" class="form-control form-control-sm" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" name="fecha_ini" id="fecha_ini" required>
+                                    </div>
+                                    <div class="col-12 form-group">
+                                        <label class="requerido" for="fecha_fin">Fecha Final</label>
+                                        <input type="date" class="form-control form-control-sm" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" name="fecha_fin" id="fecha_fin" required>
+                                    </div>
+                                    <div class="col-12 d-grid gap-2 d-md-block d-flex align-self-center">
+                                        <button type="submit" class="btn btn-primary btn-xs mini_sombra pl-sm-3 pr-sm-3" style="font-size: 0.7em;">Guardar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <h6>Grupos Actuales</h6>
+                            </div>
+                            <div class="col-12 table-responsive">
+                                <form action="{{ route('tareas.destroyTareasEmpleadoGrupos', ['id' => 0]) }}"
+                                    class="d-inline" method="POST" id="formDestroyTareasEmpleadoGrupos">
+                                    @csrf @method('delete')
+                                </form>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Grupo</th>
+                                            <th scope="col">Fecha Incial</th>
+                                            <th scope="col">Fecha Limite</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyGruposEmpleados">
+                                        <tr>
+                                            <th scope="row"></th>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="cerrarModalAny('gruposTareasModal')">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('scriptPagina')
